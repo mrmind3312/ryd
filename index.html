@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#162254">
+  <title>David &amp; Rocío — Boda Civil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       BASE & RESET
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #0c1830;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(22,34,84,0.6) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(12,24,48,0.8) 0%, transparent 50%);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px 12px;
+      padding-bottom: max(20px, env(safe-area-inset-bottom));
+      font-family: 'Nunito', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARD
+    ═══════════════════════════════════════════ */
+    .card {
+      width: 100%;
+      max-width: 440px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow:
+        0 4px 6px rgba(0,0,0,0.3),
+        0 20px 60px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    /* ═══════════════════════════════════════════
+       HEADER
+    ═══════════════════════════════════════════ */
+    .header {
+      position: relative;
+      background: #162254;
+      padding: 44px 28px 68px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Capas de acuarela */
+    .wc-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .wc-1 {
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 15%, rgba(255,255,255,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 90% 10%, rgba(255,255,255,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 45% at 50% 92%, rgba(185,215,248,0.42) 0%, transparent 58%),
+        radial-gradient(ellipse 55% 35% at 22% 80%, rgba(200,225,255,0.25) 0%, transparent 50%),
+        radial-gradient(ellipse 45% 28% at 78% 72%, rgba(180,210,248,0.20) 0%, transparent 45%);
+    }
+    .wc-2 {
+      background: linear-gradient(to bottom, transparent 55%, rgba(255,255,255,0.92) 100%);
+    }
+
+    /* ── Flores mejoradas ── */
+    .flower {
+      position: absolute;
+      pointer-events: none;
+      z-index: 3;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
+    }
+    .flower-tl { top: -14px; left: -14px;  width: 170px; height: 170px; }
+    .flower-tr { top: -14px; right: -14px; width: 170px; height: 170px; transform: scaleX(-1); }
+    .flower-bl { bottom: 24px; left: -10px;  width: 110px; height: 110px; opacity: 0.8; }
+    .flower-br { bottom: 24px; right: -10px; width: 110px; height: 110px; opacity: 0.8; transform: scaleX(-1); }
+
+    /* ── Textos del header ── */
+    .header-content {
+      position: relative;
+      z-index: 4;
+    }
+
+    .script-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.2rem, 9vw, 3.2rem);
+      color: #fff;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4), 0 0 40px rgba(200,220,255,0.15);
+      line-height: 1.15;
+    }
+
+    .names {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3.4rem, 13.5vw, 5.2rem);
+      color: #fff;
+      text-shadow: 0 3px 22px rgba(0,0,0,0.45), 0 0 60px rgba(200,220,255,0.2);
+      line-height: 1;
+      margin-top: -6px;
+    }
+
+    /* ═══════════════════════════════════════════
+       DETAILS
+    ═══════════════════════════════════════════ */
+    .details {
+      background: #fff;
+      padding: 28px 20px 20px;
+    }
+
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(0.78rem, 3vw, 0.88rem);
+      letter-spacing: 2.5px;
+      color: #162254;
+      text-align: center;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 14px 0 20px;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c4d0e8, transparent);
+    }
+    .diam {
+      width: 7px; height: 7px;
+      background: #162254;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      align-items: start;
+    }
+    .vline { background: #dce6f2; align-self: stretch; }
+
+    .info-item {
+      text-align: center;
+      padding: 0 8px;
+    }
+
+    .info-icon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .info-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: #162254;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      opacity: 0.85;
+    }
+
+    .maps-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.68rem, 2.6vw, 0.74rem);
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: #162254;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(22,34,84,0.28);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s, opacity 0.2s;
+      touch-action: manipulation;
+    }
+    .maps-link:hover { color: #2a4090; border-color: #2a4090; }
+    .maps-link:active { opacity: 0.7; }
+    .maps-link svg {
+      width: 11px;
+      height: 11px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      flex-shrink: 0;
+    }
+
+    .info-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.78rem, 3vw, 0.88rem);
+      font-weight: 700;
+      color: #162254;
+      line-height: 1.45;
+    }
+
+    .info-desc {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.70rem, 2.8vw, 0.78rem);
+      font-weight: 400;
+      color: #6a7a96;
+      line-height: 1.4;
+      margin-top: 4px;
+    }
+
+    /* ═══════════════════════════════════════════
+       DRESS CODE
+    ═══════════════════════════════════════════ */
+    .dress-code {
+      background: #162254;
+      color: #fff;
+      text-align: center;
+      padding: 14px 20px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(0.82rem, 3.5vw, 0.95rem);
+      letter-spacing: 1.5px;
+    }
+
+    /* ═══════════════════════════════════════════
+       THANK YOU
+    ═══════════════════════════════════════════ */
+    .thanks {
+      background: #f8f5f0;
+      padding: 32px 24px;
+      text-align: center;
+      border-top: 1px solid #ede8e0;
+    }
+
+    .thanks-script {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.8rem, 8vw, 2.2rem);
+      color: #162254;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .thanks-text {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.82rem, 3.2vw, 0.92rem);
+      font-weight: 300;
+      color: #6a7a96;
+      line-height: 1.8;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .thanks-sig {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.3rem, 5.5vw, 1.6rem);
+      color: #162254;
+      margin-top: 14px;
+      display: block;
+      opacity: 0.8;
+    }
+
+    /* ═══════════════════════════════════════════
+       CONFIRM SECTION
+    ═══════════════════════════════════════════ */
+    .confirm-section {
+      background: #162254;
+      padding: 30px 24px;
+      padding-bottom: max(30px, calc(env(safe-area-inset-bottom) + 10px));
+      text-align: center;
+    }
+
+    .confirm-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: #a8c0e0;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
+      margin-bottom: 20px;
+      line-height: 1.55;
+    }
+
+    .confirm-btn {
+      background: #fff;
+      color: #162254;
+      border: none;
+      padding: 16px 48px;
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.75rem, 3vw, 0.82rem);
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+      touch-action: manipulation;
+      transition: background 0.22s, transform 0.12s;
+      min-height: 52px;
+      -webkit-appearance: none;
+    }
+    .confirm-btn:hover  { background: #c8d8f0; }
+    .confirm-btn:active { transform: scale(0.97); }
+
+    /* ═══════════════════════════════════════════
+       REVEAL ANIMATIONS
+    ═══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+      transition-delay: var(--d, 0s);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Header entrance */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .script-title { animation: fadeDown 0.7s ease 0.15s both; }
+    .names        { animation: fadeDown 0.7s ease 0.35s both; }
+
+    /* ═══════════════════════════════════════════
+       MODAL OVERLAY
+    ═══════════════════════════════════════════ */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 12, 30, 0.82);
+      z-index: 400;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      padding-bottom: max(16px, env(safe-area-inset-bottom));
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
+    .overlay.open { display: flex; }
+
+    .modal {
+      background: #fff;
+      border-radius: 10px;
+      padding: 44px 26px 36px;
+      width: 100%;
+      max-width: 390px;
+      position: relative;
+      max-height: calc(100vh - 40px);
+      max-height: calc(100dvh - 40px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 16px;
+      background: none; border: none;
+      font-size: 1.25rem; color: #b0b8c8;
+      cursor: pointer; line-height: 1;
+      padding: 6px;
+      touch-action: manipulation;
+      transition: color 0.2s;
+      -webkit-appearance: none;
+    }
+    .modal-close:hover { color: #444; }
+
+    .modal-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2rem, 8vw, 2.5rem);
+      color: #162254;
+      text-align: center;
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+
+    .modal-sub {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #b0bcd0;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    /* ── Campo nombre ── */
+    .field { margin-bottom: 22px; }
+
+    .field label {
+      display: block;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #162254;
+      margin-bottom: 9px;
+      text-transform: uppercase;
+    }
+
+    .field input {
+      width: 100%;
+      border: 1.5px solid #d4dced;
+      border-radius: 6px;
+      padding: 13px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px; /* evita zoom iOS */
+      font-weight: 400;
+      color: #1a1a2e;
+      outline: none;
+      background: #f8fafd;
+      -webkit-appearance: none;
+      appearance: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .field input:focus {
+      border-color: #162254;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(22,34,84,0.1);
+    }
+    .field input::placeholder { color: #c0c8d8; }
+    .field input.error {
+      border-color: #d63031;
+      box-shadow: 0 0 0 3px rgba(214,48,49,0.12);
+      animation: shake 0.38s ease;
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-7px); }
+      60%      { transform: translateX(7px); }
+    }
+
+    /* ── Botones Sí/No ── */
+    .field-note {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: #9aa8be;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .attendance { display: flex; gap: 12px; }
+
+    .att-btn {
+      flex: 1;
+      min-height: 80px;
+      padding: 14px 10px;
+      border: 2px solid #d4dced;
+      border-radius: 8px;
+      background: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.78rem, 3vw, 0.86rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #162254;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-appearance: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: border-color 0.2s, background 0.2s, transform 0.12s, box-shadow 0.2s;
+    }
+    .att-btn .btn-icon { font-size: 1.6rem; line-height: 1; }
+    .att-btn:hover:not(:disabled) {
+      border-color: #162254;
+      background: #f0f4fc;
+      box-shadow: 0 4px 12px rgba(22,34,84,0.12);
+    }
+    .att-btn:active:not(:disabled) { transform: scale(0.97); }
+
+    /* Estado de carga */
+    .att-btn.loading {
+      border-color: #162254;
+      background: #162254;
+      color: #fff;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .att-btn.loading .btn-icon { display: none; }
+
+    /* Spinner */
+    .spinner {
+      display: none;
+      width: 22px; height: 22px;
+      border: 2.5px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .att-btn.loading .spinner { display: block; }
+
+    .btn-label { transition: none; }
+
+    /* Barra de progreso del modal */
+    .progress-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: transparent;
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #162254, #4a7ac8);
+      border-radius: inherit;
+      transition: width 1.1s ease;
+    }
+
+    /* ═══════════════════════════════════════════
+       SUCCESS
+    ═══════════════════════════════════════════ */
+    .success {
+      display: none;
+      text-align: center;
+      padding: 10px 0 6px;
+      animation: fadeIn 0.45s ease both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .success-icon {
+      font-size: clamp(2.5rem, 10vw, 3.5rem);
+      display: block;
+      margin-bottom: 16px;
+      animation: bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+    }
+    @keyframes bounceIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .success-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.2rem, 9vw, 2.8rem);
+      color: #162254;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    .success-text {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+      font-weight: 400;
+      color: #5a6a88;
+      line-height: 1.75;
+    }
+    .success-text strong { color: #162254; font-weight: 700; }
+
+    /* ═══════════════════════════════════════════
+       UTILIDADES MOBILE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 380px) {
+      .header { padding: 36px 20px 60px; }
+      .info-item { padding: 0 5px; }
+      .att-btn { min-height: 72px; }
+    }
+
+    /* Previene doble tap zoom en iOS sin deshabilitar zoom */
+    button, a { touch-action: manipulation; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="header">
+    <div class="wc-layer wc-1"></div>
+    <div class="wc-layer wc-2"></div>
+
+    <!-- Flor TL -->
+    <svg class="flower flower-tl" viewBox="0 0 170 170" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="petalGrad" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#e8eef8"/>
+        </radialGradient>
+        <radialGradient id="leafGrad" cx="30%" cy="40%" r="70%">
+          <stop offset="0%" stop-color="#6aad8a"/>
+          <stop offset="100%" stop-color="#3a6a52"/>
+        </radialGradient>
+      </defs>
+      <!-- Tallos y hojas -->
+      <path d="M62 115 Q54 138 40 155" stroke="#4a8a68" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="30" cy="128" rx="32" ry="11" fill="url(#leafGrad)" opacity="0.92" transform="rotate(-45 30 128)"/>
+      <ellipse cx="56" cy="144" rx="28" ry="9"  fill="url(#leafGrad)" opacity="0.85" transform="rotate(18 56 144)"/>
+      <ellipse cx="16" cy="98"  rx="26" ry="8"  fill="url(#leafGrad)" opacity="0.80" transform="rotate(-68 16 98)"/>
+      <!-- Capullos pequeños -->
+      <ellipse cx="102" cy="18" rx="8"  ry="12" fill="url(#petalGrad)" opacity="0.80" transform="rotate(18 102 18)"/>
+      <ellipse cx="120" cy="28" rx="7"  ry="10" fill="url(#petalGrad)" opacity="0.72" transform="rotate(30 120 28)"/>
+      <circle  cx="135" cy="44" r="7"  fill="url(#petalGrad)" opacity="0.65"/>
+      <!-- Rosa principal — pétalos traseros -->
+      <ellipse cx="62" cy="75" rx="30" ry="25" fill="url(#petalGrad)" opacity="0.80"/>
+      <ellipse cx="42" cy="62" rx="23" ry="29" fill="url(#petalGrad)" opacity="0.78"/>
+      <ellipse cx="82" cy="60" rx="25" ry="28" fill="url(#petalGrad)" opacity="0.75"/>
+      <!-- pétalos medios -->
+      <ellipse cx="50" cy="48" rx="20" ry="23" fill="url(#petalGrad)" opacity="0.90"/>
+      <ellipse cx="72" cy="46" rx="18" ry="21" fill="url(#petalGrad)" opacity="0.88"/>
+      <ellipse cx="62" cy="42" rx="16" ry="18" fill="url(#petalGrad)" opacity="0.92"/>
+      <!-- pétalos frontales -->
+      <ellipse cx="55" cy="60" rx="14" ry="16" fill="url(#petalGrad)" opacity="0.95"/>
+      <ellipse cx="70" cy="62" rx="13" ry="15" fill="url(#petalGrad)" opacity="0.93"/>
+      <!-- Centro -->
+      <circle cx="62" cy="62" r="13" fill="url(#petalGrad)" opacity="0.99"/>
+      <circle cx="62" cy="62" r="7"  fill="#f0ece8" opacity="0.95"/>
+      <circle cx="62" cy="62" r="3"  fill="#e8e0da" opacity="0.85"/>
+    </svg>
+
+    <!-- Flor TR (misma, espejada por CSS) -->
+    <svg class="flower flower-tr" viewBox="0 0 170 170" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="pg2" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#e8eef8"/>
+        </radialGradient>
+        <radialGradient id="lg2" cx="30%" cy="40%" r="70%">
+          <stop offset="0%" stop-color="#6aad8a"/>
+          <stop offset="100%" stop-color="#3a6a52"/>
+        </radialGradient>
+      </defs>
+      <path d="M62 115 Q54 138 40 155" stroke="#4a8a68" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="30" cy="128" rx="32" ry="11" fill="url(#lg2)" opacity="0.92" transform="rotate(-45 30 128)"/>
+      <ellipse cx="56" cy="144" rx="28" ry="9"  fill="url(#lg2)" opacity="0.85" transform="rotate(18 56 144)"/>
+      <ellipse cx="16" cy="98"  rx="26" ry="8"  fill="url(#lg2)" opacity="0.80" transform="rotate(-68 16 98)"/>
+      <ellipse cx="102" cy="18" rx="8"  ry="12" fill="url(#pg2)" opacity="0.80" transform="rotate(18 102 18)"/>
+      <ellipse cx="120" cy="28" rx="7"  ry="10" fill="url(#pg2)" opacity="0.72" transform="rotate(30 120 28)"/>
+      <circle  cx="135" cy="44" r="7"  fill="url(#pg2)" opacity="0.65"/>
+      <ellipse cx="62" cy="75" rx="30" ry="25" fill="url(#pg2)" opacity="0.80"/>
+      <ellipse cx="42" cy="62" rx="23" ry="29" fill="url(#pg2)" opacity="0.78"/>
+      <ellipse cx="82" cy="60" rx="25" ry="28" fill="url(#pg2)" opacity="0.75"/>
+      <ellipse cx="50" cy="48" rx="20" ry="23" fill="url(#pg2)" opacity="0.90"/>
+      <ellipse cx="72" cy="46" rx="18" ry="21" fill="url(#pg2)" opacity="0.88"/>
+      <ellipse cx="62" cy="42" rx="16" ry="18" fill="url(#pg2)" opacity="0.92"/>
+      <ellipse cx="55" cy="60" rx="14" ry="16" fill="url(#pg2)" opacity="0.95"/>
+      <ellipse cx="70" cy="62" rx="13" ry="15" fill="url(#pg2)" opacity="0.93"/>
+      <circle cx="62" cy="62" r="13" fill="url(#pg2)" opacity="0.99"/>
+      <circle cx="62" cy="62" r="7"  fill="#f0ece8" opacity="0.95"/>
+      <circle cx="62" cy="62" r="3"  fill="#e8e0da" opacity="0.85"/>
+    </svg>
+
+    <!-- Flores inferiores -->
+    <svg class="flower flower-bl" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="pg3" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#dde8f5"/>
+        </radialGradient>
+      </defs>
+      <ellipse cx="44" cy="55" rx="25" ry="20" fill="url(#pg3)" opacity="0.85"/>
+      <ellipse cx="28" cy="46" rx="20" ry="23" fill="url(#pg3)" opacity="0.80"/>
+      <ellipse cx="60" cy="44" rx="21" ry="22" fill="url(#pg3)" opacity="0.78"/>
+      <ellipse cx="36" cy="36" rx="17" ry="18" fill="url(#pg3)" opacity="0.88"/>
+      <ellipse cx="52" cy="34" rx="15" ry="16" fill="url(#pg3)" opacity="0.86"/>
+      <circle cx="44" cy="44" r="11" fill="url(#pg3)" opacity="0.95"/>
+      <circle cx="44" cy="44" r="5"  fill="#eeeaf8" opacity="0.9"/>
+    </svg>
+    <svg class="flower flower-br" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="pg4" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#dde8f5"/>
+        </radialGradient>
+      </defs>
+      <ellipse cx="44" cy="55" rx="25" ry="20" fill="url(#pg4)" opacity="0.85"/>
+      <ellipse cx="28" cy="46" rx="20" ry="23" fill="url(#pg4)" opacity="0.80"/>
+      <ellipse cx="60" cy="44" rx="21" ry="22" fill="url(#pg4)" opacity="0.78"/>
+      <ellipse cx="36" cy="36" rx="17" ry="18" fill="url(#pg4)" opacity="0.88"/>
+      <ellipse cx="52" cy="34" rx="15" ry="16" fill="url(#pg4)" opacity="0.86"/>
+      <circle cx="44" cy="44" r="11" fill="url(#pg4)" opacity="0.95"/>
+      <circle cx="44" cy="44" r="5"  fill="#eeeaf8" opacity="0.9"/>
+    </svg>
+
+    <div class="header-content">
+      <div class="script-title">Nos Casamos</div>
+      <div class="names">David &amp; Rocío</div>
+    </div>
+  </div>
+
+  <!-- ═══ DETAILS ═══ -->
+  <div class="details">
+    <p class="section-label reveal" style="--d:.05s">Acompáñanos a nuestra Boda Civil</p>
+
+    <div class="divider reveal" style="--d:.1s"><div class="diam"></div></div>
+
+    <div class="info-grid">
+      <div class="info-item reveal" style="--d:.18s">
+        <span class="info-icon">
+          <!-- Calendario -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8"  y1="2" x2="8"  y2="6"/>
+            <line x1="3"  y1="10" x2="21" y2="10"/>
+            <line x1="8"  y1="14" x2="8"  y2="14" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="12" y1="14" x2="12" y2="14" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <p class="info-label">Sábado</p>
+        <p class="info-label">28 de Febrero</p>
+        <p class="info-label">de 2026</p>
+      </div>
+      <div class="vline reveal" style="--d:.22s"></div>
+      <div class="info-item reveal" style="--d:.26s">
+        <span class="info-icon">
+          <!-- Reloj -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9"/>
+            <polyline points="12 7 12 12 15.5 14.5"/>
+          </svg>
+        </span>
+        <p class="info-label">Ceremonia</p>
+        <p class="info-label">6:00 PM</p>
+      </div>
+      <div class="vline reveal" style="--d:.30s"></div>
+      <div class="info-item reveal" style="--d:.34s">
+        <span class="info-icon">
+          <!-- Pin de mapa -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+        </span>
+        <p class="info-label">Antiguo Bar</p>
+        <p class="info-label">Restaurante Pecorino</p>
+        <p class="info-desc">3 Avenida 341<br>Cdad. de Guatemala</p>
+        <a class="maps-link"
+           href="https://maps.app.goo.gl/XMb8RoV1eruwCrf4A"
+           target="_blank"
+           rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Ver en Maps
+        </a>
+      </div>
+    </div>
+
+    <div class="divider reveal" style="--d:.4s; margin-top:20px; margin-bottom:0;"><div class="diam"></div></div>
+  </div>
+
+  <!-- ═══ DRESS CODE ═══ -->
+  <div class="dress-code reveal" style="--d:.45s">Código de vestimenta: Semi Formal</div>
+
+  <!-- ═══ GRACIAS ═══ -->
+  <div class="thanks">
+    <span class="thanks-script reveal" style="--d:.1s">Gracias por acompañarnos</span>
+    <p class="thanks-text reveal" style="--d:.2s">
+      Su presencia hace este momento aún más especial.<br>
+      Con todo nuestro cariño, los esperamos para celebrar juntos el inicio de nuestra historia.
+    </p>
+    <span class="thanks-sig reveal" style="--d:.32s">David &amp; Rocío</span>
+  </div>
+
+  <!-- ═══ CONFIRMAR ═══ -->
+  <div class="confirm-section">
+    <p class="confirm-text reveal" style="--d:.1s">¿Nos acompañarás en este día tan especial?</p>
+    <button class="confirm-btn reveal" style="--d:.22s" onclick="openModal()">
+      Confirmar Asistencia
+    </button>
+  </div>
+
+</div><!-- /card -->
+
+
+<!-- ═══════════════════════════════════════════
+     MODAL
+═══════════════════════════════════════════ -->
+<div class="overlay" id="overlay" onclick="onOverlayClick(event)" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" id="modal">
+
+    <!-- Barra de progreso -->
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+
+    <!-- ── Formulario ── -->
+    <div id="formSection">
+      <div class="modal-title" id="modalTitle">Confirmación</div>
+      <div class="modal-sub">David &amp; Rocío · 28 Feb 2026</div>
+
+      <div class="field">
+        <label for="nombre">Tu Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          placeholder="Escribe tu nombre completo"
+          autocomplete="name"
+          autocorrect="off"
+          autocapitalize="words"
+          spellcheck="false"
+        >
+      </div>
+
+      <div class="field">
+        <label>¿Confirmas tu Asistencia?</label>
+        <div class="attendance">
+          <button class="att-btn" id="btnSi" onclick="enviar('Sí')">
+            <div class="spinner"></div>
+            <span class="btn-icon">🥂</span>
+            <span class="btn-label">Sí, asistiré</span>
+          </button>
+          <button class="att-btn" id="btnNo" onclick="enviar('No')">
+            <div class="spinner"></div>
+            <span class="btn-icon">😔</span>
+            <span class="btn-label">No podré ir</span>
+          </button>
+        </div>
+        <p class="field-note">Toca una opción para enviar tu respuesta</p>
+      </div>
+    </div>
+
+    <!-- ── Éxito ── -->
+    <div class="success" id="successSection">
+      <span class="success-icon">💐</span>
+      <div class="success-title" id="successTitle">¡Gracias!</div>
+      <p class="success-text" id="successText">Tu respuesta ha sido registrada.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbzdp-slwhg4Gz-65DiPoPkvgQFVsDxOQdhCM-RmlCqK5LuNLMkcmGdv-uS1JwQrQW8Ztg/exec";
+
+  /* ── Reveal con IntersectionObserver ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ── Modal ── */
+  function openModal() {
+    document.getElementById('overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('nombre').focus(), 100);
+  }
+
+  function closeModal() {
+    document.getElementById('overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function onOverlayClick(e) {
+    if (e.target === document.getElementById('overlay')) closeModal();
+  }
+
+  /* ── Envío ── */
+  async function enviar(valor) {
+    const input  = document.getElementById('nombre');
+    const nombre = input.value.trim();
+
+    if (!nombre) {
+      input.classList.remove('error');
+      void input.offsetWidth; // reflow para reiniciar animación
+      input.classList.add('error');
+      input.focus();
+      setTimeout(() => input.classList.remove('error'), 800);
+      return;
+    }
+
+    // Estado de carga en el botón
+    const btn = valor === 'Sí' ? document.getElementById('btnSi') : document.getElementById('btnNo');
+    const otros = valor === 'Sí' ? document.getElementById('btnNo') : document.getElementById('btnSi');
+
+    btn.classList.add('loading');
+    btn.querySelector('.btn-label').textContent = 'Enviando…';
+    otros.disabled = true;
+    otros.style.opacity = '0.4';
+
+    // Barra de progreso
+    const fill = document.getElementById('progressFill');
+    fill.style.width = '0%';
+    // Hack para iniciar transición
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => { fill.style.width = '90%'; });
+    });
+
+    // Tiempo mínimo de carga visible + fetch simultáneo
+    const minDelay = new Promise(r => setTimeout(r, 1300));
+    const fetchProm = fetch(ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre, confirmado: valor })
+    }).catch(() => {});
+
+    await Promise.all([fetchProm, minDelay]);
+
+    // Completar barra
+    fill.style.transition = 'width 0.3s ease';
+    fill.style.width = '100%';
+
+    await new Promise(r => setTimeout(r, 300));
+
+    // Mostrar éxito
+    const asistio = valor === 'Sí';
+    document.getElementById('successTitle').textContent =
+      asistio ? '¡Gracias, ' + nombre + '!' : 'Recibido, ' + nombre;
+    document.getElementById('successText').innerHTML = asistio
+      ? '¡Tu confirmación fue registrada!<br>Te esperamos el <strong>28 de Febrero</strong> 🎉'
+      : 'Tu respuesta fue registrada.<br>¡Gracias por avisarnos!';
+
+    document.getElementById('formSection').style.display = 'none';
+    document.getElementById('successSection').style.display = 'block';
+  }
+
+  document.getElementById('nombre').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      document.getElementById('btnSi').focus();
+    }
+  });
+</script>
+
+</body>
+</html>
