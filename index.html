@@ -91,10 +91,84 @@
       z-index: 3;
       filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
     }
-    .flower-tl { top: -14px; left: -14px;  width: 170px; height: 170px; }
-    .flower-tr { top: -14px; right: -14px; width: 170px; height: 170px; transform: scaleX(-1); }
-    .flower-bl { bottom: 24px; left: -10px;  width: 110px; height: 110px; opacity: 0.8; }
-    .flower-br { bottom: 24px; right: -10px; width: 110px; height: 110px; opacity: 0.8; transform: scaleX(-1); }
+    .flower-tl {
+      top: -14px; left: -14px;
+      width: 170px; height: 170px;
+      transform-origin: 14% 14%;
+      animation: sway-tl 7s ease-in-out infinite;
+    }
+    .flower-tr {
+      top: -14px; right: -14px;
+      width: 170px; height: 170px;
+      transform-origin: 86% 14%;
+      animation: sway-tr 9s ease-in-out infinite -2.8s;
+    }
+    .flower-bl {
+      bottom: 24px; left: -10px;
+      width: 110px; height: 110px;
+      opacity: 0.8;
+      transform-origin: 20% 85%;
+      animation: sway-tl 6s ease-in-out infinite -1.2s;
+    }
+    .flower-br {
+      bottom: 24px; right: -10px;
+      width: 110px; height: 110px;
+      opacity: 0.8;
+      transform-origin: 80% 85%;
+      animation: sway-tr 7.5s ease-in-out infinite -4s;
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMACIONES FLORES — BRISA
+    ═══════════════════════════════════════════ */
+
+    /* Sway global — flores izquierda */
+    @keyframes sway-tl {
+      0%   { transform: rotate(0deg)         translateY(0px); }
+      20%  { transform: rotate(1.4deg)       translateY(-1.5px); }
+      50%  { transform: rotate(-0.8deg)      translateY(0.8px); }
+      80%  { transform: rotate(1.1deg)       translateY(-1px); }
+      100% { transform: rotate(0deg)         translateY(0px); }
+    }
+    /* Sway global — flores derecha (mantiene espejo) */
+    @keyframes sway-tr {
+      0%   { transform: scaleX(-1) rotate(0deg)    translateY(0px); }
+      25%  { transform: scaleX(-1) rotate(1.6deg)  translateY(-1.5px); }
+      55%  { transform: scaleX(-1) rotate(-0.9deg) translateY(1px); }
+      85%  { transform: scaleX(-1) rotate(1.2deg)  translateY(-0.8px); }
+      100% { transform: scaleX(-1) rotate(0deg)    translateY(0px); }
+    }
+
+    /* ── Pétalos individuales ──
+       transform-box: fill-box  → origin relativo al bbox del pétalo
+       transform-origin: bottom → rota desde la base, como un pétalo real  */
+    .petal {
+      transform-box: fill-box;
+      transform-origin: 50% 100%;
+    }
+    @keyframes petal-a {
+      0%,100% { transform: rotate(0deg) scale(1); }
+      40%     { transform: rotate(2.8deg) scale(1.03); }
+      70%     { transform: rotate(-1.8deg) scale(0.98); }
+    }
+    @keyframes petal-b {
+      0%,100% { transform: rotate(0deg) scale(1); }
+      35%     { transform: rotate(-2.2deg) scale(1.02); }
+      68%     { transform: rotate(1.5deg) scale(0.99); }
+    }
+    @keyframes petal-c {
+      0%,100% { transform: rotate(0deg); }
+      45%     { transform: rotate(3deg); }
+      72%     { transform: rotate(-1.2deg); }
+    }
+    /* Asignación de animación + delay por pétalo */
+    .p1 { animation: petal-a 3.8s ease-in-out infinite 0.0s; }
+    .p2 { animation: petal-b 4.5s ease-in-out infinite 0.6s; }
+    .p3 { animation: petal-a 4.1s ease-in-out infinite 1.3s; }
+    .p4 { animation: petal-c 3.6s ease-in-out infinite 1.9s; }
+    .p5 { animation: petal-b 4.3s ease-in-out infinite 0.9s; }
+    .p6 { animation: petal-c 3.5s ease-in-out infinite 2.5s; }
+    .p7 { animation: petal-a 4.0s ease-in-out infinite 0.4s; }
 
     /* ── Textos del header ── */
     .header-content {
@@ -627,16 +701,16 @@
       <ellipse cx="120" cy="28" rx="7"  ry="10" fill="url(#petalGrad)" opacity="0.72" transform="rotate(30 120 28)"/>
       <circle  cx="135" cy="44" r="7"  fill="url(#petalGrad)" opacity="0.65"/>
       <!-- Rosa principal — pétalos traseros -->
-      <ellipse cx="62" cy="75" rx="30" ry="25" fill="url(#petalGrad)" opacity="0.80"/>
-      <ellipse cx="42" cy="62" rx="23" ry="29" fill="url(#petalGrad)" opacity="0.78"/>
-      <ellipse cx="82" cy="60" rx="25" ry="28" fill="url(#petalGrad)" opacity="0.75"/>
+      <ellipse class="petal p1" cx="62" cy="75" rx="30" ry="25" fill="url(#petalGrad)" opacity="0.80"/>
+      <ellipse class="petal p2" cx="42" cy="62" rx="23" ry="29" fill="url(#petalGrad)" opacity="0.78"/>
+      <ellipse class="petal p3" cx="82" cy="60" rx="25" ry="28" fill="url(#petalGrad)" opacity="0.75"/>
       <!-- pétalos medios -->
-      <ellipse cx="50" cy="48" rx="20" ry="23" fill="url(#petalGrad)" opacity="0.90"/>
-      <ellipse cx="72" cy="46" rx="18" ry="21" fill="url(#petalGrad)" opacity="0.88"/>
-      <ellipse cx="62" cy="42" rx="16" ry="18" fill="url(#petalGrad)" opacity="0.92"/>
+      <ellipse class="petal p4" cx="50" cy="48" rx="20" ry="23" fill="url(#petalGrad)" opacity="0.90"/>
+      <ellipse class="petal p5" cx="72" cy="46" rx="18" ry="21" fill="url(#petalGrad)" opacity="0.88"/>
+      <ellipse class="petal p6" cx="62" cy="42" rx="16" ry="18" fill="url(#petalGrad)" opacity="0.92"/>
       <!-- pétalos frontales -->
-      <ellipse cx="55" cy="60" rx="14" ry="16" fill="url(#petalGrad)" opacity="0.95"/>
-      <ellipse cx="70" cy="62" rx="13" ry="15" fill="url(#petalGrad)" opacity="0.93"/>
+      <ellipse class="petal p7" cx="55" cy="60" rx="14" ry="16" fill="url(#petalGrad)" opacity="0.95"/>
+      <ellipse class="petal p1" cx="70" cy="62" rx="13" ry="15" fill="url(#petalGrad)" opacity="0.93"/>
       <!-- Centro -->
       <circle cx="62" cy="62" r="13" fill="url(#petalGrad)" opacity="0.99"/>
       <circle cx="62" cy="62" r="7"  fill="#f0ece8" opacity="0.95"/>
@@ -662,14 +736,14 @@
       <ellipse cx="102" cy="18" rx="8"  ry="12" fill="url(#pg2)" opacity="0.80" transform="rotate(18 102 18)"/>
       <ellipse cx="120" cy="28" rx="7"  ry="10" fill="url(#pg2)" opacity="0.72" transform="rotate(30 120 28)"/>
       <circle  cx="135" cy="44" r="7"  fill="url(#pg2)" opacity="0.65"/>
-      <ellipse cx="62" cy="75" rx="30" ry="25" fill="url(#pg2)" opacity="0.80"/>
-      <ellipse cx="42" cy="62" rx="23" ry="29" fill="url(#pg2)" opacity="0.78"/>
-      <ellipse cx="82" cy="60" rx="25" ry="28" fill="url(#pg2)" opacity="0.75"/>
-      <ellipse cx="50" cy="48" rx="20" ry="23" fill="url(#pg2)" opacity="0.90"/>
-      <ellipse cx="72" cy="46" rx="18" ry="21" fill="url(#pg2)" opacity="0.88"/>
-      <ellipse cx="62" cy="42" rx="16" ry="18" fill="url(#pg2)" opacity="0.92"/>
-      <ellipse cx="55" cy="60" rx="14" ry="16" fill="url(#pg2)" opacity="0.95"/>
-      <ellipse cx="70" cy="62" rx="13" ry="15" fill="url(#pg2)" opacity="0.93"/>
+      <ellipse class="petal p1" cx="62" cy="75" rx="30" ry="25" fill="url(#pg2)" opacity="0.80"/>
+      <ellipse class="petal p2" cx="42" cy="62" rx="23" ry="29" fill="url(#pg2)" opacity="0.78"/>
+      <ellipse class="petal p3" cx="82" cy="60" rx="25" ry="28" fill="url(#pg2)" opacity="0.75"/>
+      <ellipse class="petal p4" cx="50" cy="48" rx="20" ry="23" fill="url(#pg2)" opacity="0.90"/>
+      <ellipse class="petal p5" cx="72" cy="46" rx="18" ry="21" fill="url(#pg2)" opacity="0.88"/>
+      <ellipse class="petal p6" cx="62" cy="42" rx="16" ry="18" fill="url(#pg2)" opacity="0.92"/>
+      <ellipse class="petal p7" cx="55" cy="60" rx="14" ry="16" fill="url(#pg2)" opacity="0.95"/>
+      <ellipse class="petal p1" cx="70" cy="62" rx="13" ry="15" fill="url(#pg2)" opacity="0.93"/>
       <circle cx="62" cy="62" r="13" fill="url(#pg2)" opacity="0.99"/>
       <circle cx="62" cy="62" r="7"  fill="#f0ece8" opacity="0.95"/>
       <circle cx="62" cy="62" r="3"  fill="#e8e0da" opacity="0.85"/>
